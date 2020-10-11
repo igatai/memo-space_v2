@@ -1,0 +1,4 @@
+$('.wrapper__contents__right__ul').remove();
+$('#paginate').empty();
+$('#paginate').html("<%= escape_javascript(render(partial: 'shared/memos', locals: {memos: @memos})) %>");
+$('.wrapper__contents__right').html("<%= escape_javascript(render(partial: 'shared/contents_right', locals: {users_folders: @user_folders})) %>");

@@ -15,74 +15,64 @@
 //= require fullcalendar
 //= require jquery_ujs
 //= require jquery-ui
-//= require turbolinks
+// require turbolinks
 //= require_tree .
 
 // For fullcalendar
 $(function () {
-  // 画面遷移を検知
-  $(document).on('turbolinks:load', function () {
-    if ($('#calendar').length) {
-      function Calendar() {
-        return $('#calendar').fullCalendar({
-        });
-      }
-      function clearCalendar() {
-        $('#calendar').html('');
-      }
-      $(document).on('turbolinks:load', function () {
-        Calendar();
+  if ($('#calendar').length) {
+    function Calendar() {
+      return $('#calendar').fullCalendar({
       });
-      $(document).on('turbolinks:before-cache', clearCalendar);
     }
-  });
+    function clearCalendar() {
+      $('#calendar').html('');
+    }
+    $(document).on('turbolinks:load', function () {
+      Calendar();
+    });
+    $(document).on('turbolinks:before-cache', clearCalendar);
+  }
 });
 
 $(function(){
-  $(document).on('turbolinks:load', function () {
-    $(".btn-gnavi#wrapper").on("click", function(){
-        // ハンバーガーメニューの位置を設定
-      var rightVal = 0;
-      console.log(rightVal);
-      if($(this).hasClass("open")) {
-        // 位置を移動させメニューを開いた状態にする
-        rightVal = -300;
-        // メニューを開いたら次回クリック時は閉じた状態になるよう設定
-        $(this).removeClass("open");
-      } else {
-        // メニューを開いたら次回クリック時は閉じた状態になるよう設定
-        $(this).addClass("open");
-      }
-      $("#global-navi").stop().animate({
-        right: rightVal
-      }, 200);
-    });
+  $(".btn-gnavi#wrapper").on("click", function(){
+      // ハンバーガーメニューの位置を設定
+    var rightVal = 0;
+    // console.log(rightVal);
+    if($(this).hasClass("open")) {
+      // 位置を移動させメニューを開いた状態にする
+      rightVal = -300;
+      // メニューを開いたら次回クリック時は閉じた状態になるよう設定
+      $(this).removeClass("open");
+    } else {
+      // メニューを開いたら次回クリック時は閉じた状態になるよう設定
+      $(this).addClass("open");
+    }
+    $("#global-navi").stop().animate({
+      right: rightVal
+    }, 200);
   });
 });
 
 $(function () {
-  $(document).on('turbolinks:load', function () {
-    // サイドサブメニューアコーディオン
-    $('#tag_search_title').on('click', function(){
-        var $subNav = $("#tag_search");
-        console.log($subNav);
-        console.log($subNav.is(':visible'));
-        if ($subNav.is(':visible')) {
-          $subNav.velocity('slideUp', {duration: 200});
-          $(this).children('ul').removeClass('is-active');
-        }
-        else {
-          // console.log("not visible");
-          $subNav.velocity('slideDown', {duration: 200});
-          $(this).children('ul').addClass('is-active');
-        }
-        return false;
-    });
-
-    $('#nav-toggle').on('click', function() {
-        $('body').toggleClass('close');
-    });
-
-    $('.scroll').perfectScrollbar();
+  // サイドサブメニューアコーディオン
+  $('#tag_search_title').on('click', function(){
+      var $subNav = $("#tag_search");
+      if ($subNav.is(':visible')) {
+        $subNav.velocity('slideUp', {duration: 200});
+        $(this).children('ul').removeClass('is-active');
+      }
+      else {
+        $subNav.velocity('slideDown', {duration: 200});
+        $(this).children('ul').addClass('is-active');
+      }
+      return false;
   });
+
+  $('#nav-toggle').on('click', function() {
+      $('body').toggleClass('close');
+  });
+
+  $('.scroll').perfectScrollbar();
 });

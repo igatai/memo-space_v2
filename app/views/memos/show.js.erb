@@ -1,0 +1,5 @@
+$('.wrapper__contents__index').remove();
+$('.wrapper__contents__right').remove();
+$('.wrapper__contents').append('<div class="wrapper__contents__center"></div>');
+$('.wrapper__contents__center').append('<div class="wrapper__contents__center__memo"></div>');
+$('.wrapper__contents__center__memo').html("<%= escape_javascript(render(partial: 'shared/contents_show', locals: {memo: @memo, tags: @tags})) %>");

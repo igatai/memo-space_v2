@@ -1,17 +1,5 @@
 .wrapper__contents__index__head
   .wrapper__contents__index__head__sub_title
     = "Memo list"
-%ul.wrapper__contents__index__ul
-  - @memos.each do |memo|
-    = link_to memo_path(memo) do
-      %li.wrapper__contents__index__ul__list
-        .wrapper__contents__index__ul__list__title
-          = memo.title
-        .wrapper__contents__index__ul__list__content
-          .wrapper__contents__index__ul__list__content__text
-            = memo.text
-          = image_tag memo.image.url, class: '.wrapper__contents__index__ul__list__content__image', size: '30x30' if memo.image.present?
-        .wrapper__contents__index__ul__list__date
-          = memo.updated_at.strftime("%Y/%m/%d")
-.wrapper__contents__index__pagination
-  = paginate @memos
+#paginate
+  = render partial: 'shared/memos', locals: {memos: @memos}

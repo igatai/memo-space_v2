@@ -4,6 +4,6 @@
   .wrapper__contents
     .wrapper__contents__center
       .wrapper__contents__center__memo
-        = render "shared/contents_show"
+        = render(partial: "shared/contents_show", locals: {memo: @memo})
     .wrapper__contents__right
-      = render "shared/contents_right"  
+      = render "shared/contents_right"
