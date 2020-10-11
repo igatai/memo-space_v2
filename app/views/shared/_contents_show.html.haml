@@ -1,13 +1,13 @@
 .wrapper__contents__center__memo__info
   .wrapper__contents__center__memo__info__title
-    = simple_format(@memo.title)
+    = simple_format(memo.title)
 .wrapper__contents__center__memo__content
   .wrapper__contents__center__memo__content__text
-    = simple_format(@memo.text) if @memo.text.present?
-  = image_tag @memo.image.url, class: 'image', size: '240x240' if @memo.image.present?
+    = simple_format(memo.text) if memo.text.present?
+  = image_tag memo.image.url, class: 'image', size: '240x240' if memo.image.present?
 .wrapper__contents__center__memo__bottom
   .wrapper__contents__center__memo__bottom__date
-    = simple_format(@memo.updated_at.strftime("%Y/%m/%d/ %H:%M"))
+    = simple_format(memo.updated_at.strftime("%Y/%m/%d/ %H:%M"))
   .wrapper__contents__center__memo__bottom__tags
     - @tags.each do |tag|
       %i.fas.fa-tags
@@ -15,7 +15,7 @@
         = simple_format(tag.name) if tag.present?
   .wrapper__contents__center__memo__bottom__icon
     .wrapper__contents__center__memo__bottom__icon__edit
-      = link_to edit_memo_path(@memo) do
+      = link_to edit_memo_path(memo) do
         = icon('fas',' fa-edit')
     .wrapper__contents__center__memo__bottom__icon__delete
-      = link_to icon('fas',' fa-trash-alt'), memo_path(@memo), method: :delete
+      = link_to icon('fas',' fa-trash-alt'), memo_path(memo), method: :delete

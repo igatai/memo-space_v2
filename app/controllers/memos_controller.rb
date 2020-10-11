@@ -3,7 +3,10 @@ class MemosController < ApplicationController
   before_action :set_memo_list, only: [:index, :create, :update, :destroy]
 
   def index
-    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -21,7 +24,10 @@ class MemosController < ApplicationController
   end
 
   def show
-
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
@@ -44,7 +50,6 @@ class MemosController < ApplicationController
   private
 
   def set_memo_list
-    # binding.pry
     @memos = Memo.includes(:user).where(user_id: current_user.id).order(updated_at: :desc).page(params[:page]).per(8) if current_user != nil
   end
 
@@ -52,6 +57,7 @@ class MemosController < ApplicationController
     @memo = Memo.find(params[:id])
     @tags = @memo.tags
   end
+
   def memo_params
     # tag_ids: [] ... model_name + __ids + 配列表記[] -> 中間テーブルに保存
     params.require(:memo).permit(:title, :text, :image, tag_ids: [] ).merge(user_id: current_user.id)
