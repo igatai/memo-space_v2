@@ -33,7 +33,7 @@ $top_height: 50px;
       margin: 0 auto;
       margin-bottom: 100px;
       display: inline-block;
-  
+
       &__list {
         @include list-sm;
         &__title {
@@ -146,7 +146,6 @@ $top_height: 50px;
       display: inline-block;
       width: 90%;
       height: 100%;
-  
       position: absolute;
       top: 10%;
       left: 5%;
