@@ -31,4 +31,5 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 COPY Gemfile $APP_HOME
 COPY Gemfile.lock $APP_HOME
+RUN gem install bundler
 RUN bundle install
